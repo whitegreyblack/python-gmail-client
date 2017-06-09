@@ -1,2 +1,12 @@
 # python-gmail-client
-Simplified Google Mail Api
+Simple Command Line Client for Gmail using Google-Python API's
+
+```markdown
+$ import gmail
+
+$ inbox = gmail.Mail()
+$ messages = mail.getMessages()
+$ mail.getMessage(messages[0]['id'])
+Message: Hello.
+```
+
