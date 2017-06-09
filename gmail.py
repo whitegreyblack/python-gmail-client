@@ -1,8 +1,10 @@
 import quickstart
 import httplib2
 import pprint
+import base64
+from bs4 import BeautifulSoup
 from apiclient import discovery, errors
-
+import email
 class Mail:
 
     def __init__(self):
@@ -60,7 +62,8 @@ class Mail:
         try:
             message = self.client.users().messages().get(
                                                 userId='me', 
-                                                id=msgId).execute()
+                                                id=msgId,
+                                                format='full').execute()
             header_from, header_subj = _parse_header(message['payload']['headers'])
             print("{:<25}:- {:<70}".format(header_from[:25:], header_subj[:70:]))
             return message
@@ -91,8 +94,6 @@ class Mail:
 def main():
     mail = Mail()
     msgs = mail.getMessages()
-    for i in range(5):
-        mail.getMessage(msgs[i]['id'])
-
+    msg = mail.getMessage(msgs[0]['id'])
 if __name__ == '__main__':
     main()
