@@ -40,7 +40,7 @@ class Mail:
         try:
             message = self.client.users().messages().get(userId='me', id=msgId).execute()
 
-            print('Message {}',format(message['snippet']))
+            print('Message: {}'.format(message['snippet']))
             return message
         except errors.HttpError as error:
             print('Error: {}'.format(error))
